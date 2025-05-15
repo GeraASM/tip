@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+        <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+        <link rel="stylesheet" href="./style.css">
+        <title>Frontend Mentor | Tip calculator app</title>
+
+    
+    </head>
+    <body>
+        <main class="main">
+            <div class="wrapper">
+                <img class="logo" src="./images/logo.svg" alt="logo">
+                <div class="calculator">
+                    <!-- custom -->
+                    <section class="custom">
+                        <section class="bill">
+                            <p class="sub text-present-5 bill__title">Bill</p>
+                            <div class="content bill__content">
+                                <img class="icon" src="./images/icon-dollar.svg" alt="Dollar">
+                                <input id="cost-food" type="number" name="amount" class="count bill__amount text-present-3">
+                            </div>
+                        </section>
+                        <section class="tip">
+                            <p class="sub text-present-5 tip__title">Select Tip %</p>
+                            <div class="tip__content">
+                                <button data-percentage="0.05" class="tip__percentage text-present-3">5%</button>
+                                <button data-percentage="0.1" class="tip__percentage text-present-3">10%</button>
+                                <button data-percentage="0.15" class="tip__percentage text-present-3 btn-select">15%</button>
+                                <button data-percentage="0.25" class="tip__percentage text-present-3">25%</button>
+                                <button data-percentage="0.50" class="tip__percentage text-present-3">50%</button>
+                                <button data-percentage="custom" class="tip__percentage text-present-3 btn-custom">Custom</button>
+                            </div>
+                            <div style="display: none;" class="content percentage__container bill__content">
+                                <img class="icon icon-percentage" src="./images/percentage_icon.svg" alt="Percentage">
+                                <input id="custon-input" type="number" name="amount" class="count bill__amount text-present-3">
+                            </div>
+                        </section>
+                        <section class="people">
+                            <p class="sub text-present-5 people__title">Number of People</p>
+                            <div class="content people__content">
+                                <img class="icon" src="./images/icon-person.svg" alt="Person">
+                                <input id="count-people" type="number" name="count" class="count people__count text-present-3">
+                            </div>
+                        </section>
+                    </section>
+                    <!-- show -->
+                    <section class="show">
+                        <div class="show__container">
+                            <div class="position">
+                                <div class="info">
+                                    <p class="info__title text-present-5">Tip Amount</p>
+                                    <p class="person text-present-6">/ person</p>
+                                </div>
+                                <h2 id="per-person" class="data text-present-title">$4.27</h2>
+                            </div>
+                            <div class="position">
+                                <div class="info">
+                                    <p class="info__title text-present-5">Total</p>
+                                    <p class="person text-present-6">/ person</p>
+                                </div>
+                                <h2 id="per-person-total" class="data text-present-title">$32.79</h2>
+                            </div>
+                            <button class="reset tip__percentage text-present-3">RESET</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <script defer src="./main.js"></script>
+    <!-- Bill
+    5%
+    10%
+    15%
+    25%
+    50%
+    Custom
+
+    Number of People
+
+    Tip Amount
+    / person
+
+    Total
+    / person
+
+    Reset -->
+    
+    </body>
+</html>
