@@ -10,6 +10,8 @@ const customBtn = document.querySelector('.btn-custom');
 const perPersonShow = document.getElementById('per-person');
 const totalPersonShow = document.getElementById('per-person-total');
 
+const reset = document.getElementById('reset');
+
 const tipPerPerson = (amount, people, percentage) => ((amount * percentage) / people).toFixed(2);
 const totalPerPerson = (amount, people, percentage) => ((amount + (amount * percentage)) / people).toFixed(2);
 
@@ -59,6 +61,7 @@ function getData(event) {
 
 
     if (allCorrect(amount, people)) {
+        enableReset();
         perPersonShow.textContent = `$${tipPerPerson(parseFloat(amount), parseInt(people), parseFloat(percentage))}`;
         totalPersonShow.textContent = `$${totalPerPerson(parseFloat(amount), parseInt(people), parseFloat(percentage))}`
     }
@@ -94,18 +97,35 @@ function getCustomInput(e) {
     e.target.classList.add('btn-select');
 
     if (allCorrect(amount, people)) {
+        enableReset();
         perPersonShow.textContent = `$${tipPerPerson(parseFloat(amount), parseInt(people), percentage)}`;
         totalPersonShow.textContent = `$${totalPerPerson(parseFloat(amount), parseInt(people), percentage)}`;
     }
 }
 
+function enableReset() {
+  reset.disabled = false;
+}
+
+
 customBtn.addEventListener('input', getCustomInput);
 
 
-const reset = document.getElementById('reset');
-reset.addEventListener('click', () => {
+function resetAll() {
+    reset.disabled = true;
     btns.forEach(btn => btn.classList.remove('btn-select'));
     errorText.style.display = 'none';
+    document.getElementById('cost-food').value = '';
+    document.getElementById('count-people').value = '';
+    customBtn.value = '';
     perPersonShow.textContent = `$0.00`;
     totalPersonShow.textContent = `$0.00`;
+}
+
+
+reset.addEventListener('click', () => {
+    resetAll();
 })
+
+
+document.addEventListener('DOMContentLoaded', resetAll)
