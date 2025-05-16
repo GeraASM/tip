@@ -83,7 +83,6 @@ input::placeholder {
 }
 
 .wrapper {
-    border: 1px solid red;
     margin: 0 auto;
     width: 375px;
     height: 100%;
@@ -161,6 +160,7 @@ input::placeholder {
 .btn-custom {
     background-color: var(--grey-50);
     color: var(--grey-500);
+    min-width: 1px;
 }
 
 .show {
@@ -281,6 +281,10 @@ input::placeholder {
 
 
 
+.reset:disabled {
+    background-color: hsla(172, 67%, 45%, 0.3);
+    color: hsla(183, 100%, 15%, 0.3);
+}
 
 
 

@@ -1,10 +1,10 @@
-const correctInputCost = /\$?\d+\.\d*/;
+const correctInputCost = /\$?\d+\.?\d{1,2}/;
 const correctInputPerson = /\d+/;
 
 const errorText = document.getElementById('error');
 
 const btns = document.querySelectorAll('.tip__percentage');
-const customInput = document.getElementById('input-custom');
+
 const customBtn = document.querySelector('.btn-custom');
 
 const perPersonShow = document.getElementById('per-person');
@@ -35,7 +35,7 @@ function allCorrect(amount, people) {
         errorAmount(true); isCorret = false; 
     }  else {errorAmount(false);}
 
-    if (!people.trim() || !correctInputPerson.test(people) || parseInt(amount) <= 0) {
+    if (!people.trim() || !correctInputPerson.test(people) || parseInt(people) <= 0) {
         errorCount(true); isCorret = false;
     } else {errorCount(false);}
     return isCorret;
@@ -45,23 +45,17 @@ function getData(event) {
     event.preventDefault();
     const btnClicket = event.currentTarget;
     btns.forEach(btn => btn.classList.remove('btn-select'));
-    btnClicket.classList.add('btn-select');
+    if (!btnClicket.classList.contains('btn-custom')) {
+        btnClicket.classList.add('btn-select');
+    }
 
-
+    const percentage = btnClicket.dataset.percentage;
+    if (percentage === 'custom') {
+        return
+    }
 
     const amount = document.getElementById('cost-food').value;
     const people = document.getElementById('count-people').value;
-    const percentage = btnClicket.dataset.percentage;
-    if (percentage === 'custom') {
-        btnClicket.style.display = 'none';
-        customInput.style.display = 'block';
-        return
-    } else {
-        customBtn.style.display = 'block';
-        customInput.value = '';
-        customInput.style.display = 'none';
-    }
-
 
 
     if (allCorrect(amount, people)) {
@@ -79,8 +73,39 @@ btns.forEach(btn => {
 
 
 
+const isCorrectPercentage  = /[\d]+%?/;
+
+function getCustomInput(e) {
+    const value = e.target.value.trim();
+
+    if (!isCorrectPercentage.test(value)) {
+        e.target.classList.add('input-error');
+        return;
+    }
+
+    e.target.classList.remove('input-error');
+
+    const percentage = parseFloat(value.replace('%', '')) / 100;
+
+    const amount = document.getElementById('cost-food').value;
+    const people = document.getElementById('count-people').value;
+
+    btns.forEach(btn => btn.classList.remove('btn-select'));
+    e.target.classList.add('btn-select');
+
+    if (allCorrect(amount, people)) {
+        perPersonShow.textContent = `$${tipPerPerson(parseFloat(amount), parseInt(people), percentage)}`;
+        totalPersonShow.textContent = `$${totalPerPerson(parseFloat(amount), parseInt(people), percentage)}`;
+    }
+}
+
+customBtn.addEventListener('input', getCustomInput);
 
 
-
-
-customBtn.addEventListener('click', )
+const reset = document.getElementById('reset');
+reset.addEventListener('click', () => {
+    btns.forEach(btn => btn.classList.remove('btn-select'));
+    errorText.style.display = 'none';
+    perPersonShow.textContent = `$0.00`;
+    totalPersonShow.textContent = `$0.00`;
+})

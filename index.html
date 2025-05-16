@@ -32,8 +32,7 @@
                                 <button data-percentage="0.15" class="tip__percentage text-present-3 btn-select">15%</button>
                                 <button data-percentage="0.25" class="tip__percentage text-present-3">25%</button>
                                 <button data-percentage="0.50" class="tip__percentage text-present-3">50%</button>
-                                <button data-percentage="custom" class="tip__percentage text-present-3 btn-custom">Custom</button>
-                                <input id="input-custom" class="count tip__percentage text-present-3 input-custom" type="number" >
+                                <input data-percentage="custom" class="tip__percentage text-present-3 btn-custom" placeholder="Custom">
                             </div>
                         </section>
                         <section class="people">
@@ -64,7 +63,7 @@
                                 </div>
                                 <h2 id="per-person-total" class="data text-present-title">$0.00</h2>
                             </div>
-                            <button class="reset tip__percentage text-present-3">RESET</button>
+                            <button id="reset" class="reset tip__percentage text-present-3" disabled>RESET</button>
                         </div>
                     </section>
                 </div>
