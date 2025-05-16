@@ -21,9 +21,11 @@
     --green-900: hsl(183, 100%, 15%);
     --grey-500: hsl(186, 14%, 43%);
     --grey-400: hsl(184, 14%, 56%);
+    --grey-300: #9EBBBD;
     --grey-200: hsl(185, 41%, 84%);
     --grey-50: hsl(189, 47%, 97%);
     --white: hsl(0, 100%, 100%);
+    --orange: #E17052;
 }
 
 body {
@@ -37,6 +39,15 @@ body {
 
 img, button {
     display: block;
+}
+
+input::placeholder {
+    color: var(--grey-300);
+    font-family: "Space Mono", monospace;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: 0px;
+    font-weight: inherit;
 }
 
 .text-present-title {
@@ -98,15 +109,6 @@ img, button {
     gap: var(--spacing-400);
 }
 
-.count {
-    text-align: end;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    height: 100%;
-    color: var(--green-900);
-}
-
 .bill {
     height: var(--spacing-1000);
 }
@@ -122,6 +124,7 @@ img, button {
     align-items: center;
     background-color: var(--grey-50);
     padding: var(--spacing-100) var(--spacing-200);
+    cursor: pointer;
 }
 
 .icon {
@@ -131,6 +134,7 @@ img, button {
 
 /* -------------------------- GRID */
 .tip__content {
+    width: fit-content;
     display: grid;
     gap: var(--spacing-200);
     grid-template-columns: repeat(2, 1fr);
@@ -147,6 +151,11 @@ img, button {
     background-color: var(--green-900);
     border-radius: 5px;
     cursor: pointer;
+}
+
+.tip__percentage:hover {
+    color: var(--green-900);
+    background-color: var(--grey-200);
 }
 
 .btn-custom {
@@ -187,10 +196,22 @@ img, button {
     width: 100%;
 }
 
+.people__text {
+    display: flex;
+    justify-content: space-between;
+}
+
 .show {
     margin-top: var(--spacing-400);
 }
 
+.count {
+    border: none;
+    outline: none;
+    text-align: end;
+    background-color: transparent;
+    cursor: pointer;
+}
 
 
 .percentage__container {
@@ -207,7 +228,52 @@ img, button {
 }
 
 
+
+.input-custom {
+    display: block;
+    outline: 1px solid var(--grey-400);
+    background-color: var(--grey-300);
+    min-width: 1px;
+    color: var(--green900);
+    background-color: var(--white);
+    text-align: end;
+}
+
+.input-custom:hover {
+    outline: 2px solid var(--green-400);
+}
+
+.input-custom:focus {
+    outline: 2px solid var(--green-400);
+}
+
+.content:hover {
+    outline: 2px solid var(--green-400);
+}
+
+
 /* ------------------------------------- PART script */
+
+.input-custom {
+    display: none;
+    outline: 1px solid var(--grey-400);
+    background-color: var(--grey-300);
+    min-width: 1px;
+    color: var(--green900);
+    background-color: var(--white);
+    text-align: end;
+}
+
+.error {
+    display: none;
+    color: var(--orange);
+}
+
+.error-content {
+    outline: 1px solid var(--orange);
+}
+
+
 .btn-select {
     background-color: var(--green-400);
     color: var(--green-900);
